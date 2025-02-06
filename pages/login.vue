@@ -18,16 +18,18 @@ function submit() {
   signupMode.value ? signup() : login()
 }
 
+interface UserType {
+  user: {
+    name: string,
+    group: string
+  },
+  ok: boolean,
+  msg: string
+}
+
 async function login() {
   loading.value = true
-  await $fetch<{
-    user: {
-      name: string,
-      group: string
-    },
-    ok: boolean,
-    msg: string
-  }>('/api/user/login', {
+  await $fetch<UserType>('/api/user/login', {
     method: 'POST',
     body: form.value
   }).then((data) => {
@@ -38,29 +40,33 @@ async function login() {
       }, 1000);
     }
   }).catch((err) => {
-    toast.add({ title: err.message, icon: "/favicon.png" })
+    toast.add({ title: "登陆失败！", icon: "/favicon.png" })
   })
-
 
   setTimeout(() => {
     loading.value = false
   }, 2000);
 }
 
-
 async function signup() {
-  console.log(form.value.name);
-  const data = await $fetch<{
-    ok: boolean,
-    msg: string
-  }>('/api/user/signup', {
+  loading.value = true
+  await $fetch<UserType>('/api/user/signup', {
     method: 'POST',
     body: form.value
+  }).then((data) => {
+    if (data.ok) {
+      toast.add({ title: data.msg })
+      setTimeout(() => {
+        router.push('/admin')
+      }, 1000);
+    }
+  }).catch((err) => {
+    toast.add({ title: "注册失败！" })
   })
 
   setTimeout(() => {
     loading.value = false
-  }, 500);
+  }, 2000);
 }
 
 onMounted(() => {
@@ -95,6 +101,9 @@ onMounted(() => {
   </form>
 </template>
 <style scoped>
+input{
+  padding: 15px;
+}
 /* toggle button */
 .toggle {
   position: relative;

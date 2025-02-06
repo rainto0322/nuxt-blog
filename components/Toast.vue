@@ -1,12 +1,6 @@
 <script setup lang="ts">
 const toast = useToast()
 const list = ref(toast.toasts)
-function click() {
-  toast.add({ title: "demo", msg: "dakljsdkl", icon: "/favicon.png" })
-}
-function click2() {
-  toast.add({ title: "登陆成功" })
-}
 function remove(id: string | number) {
   toast.remove(id)
 }

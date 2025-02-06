@@ -25,6 +25,8 @@ export default defineEventHandler(async (event) => {
     }
 
   } catch (error) {
+    setCookie(event, 'name', '')
+    setCookie(event, 'token', '')
     return new Response(error as string, { status: 401 })
   }
 })

@@ -27,12 +27,6 @@
   }
 }
 
-html,
-input,
-textarea {
-  background-color: var(--major);
-}
-
 img {
   max-width: 100%;
   border-radius: 1em;
@@ -48,6 +42,7 @@ html {
   font-size: 14px;
   font-weight: normal;
   line-height: 1.5em;
+  background-color: var(--major);
   color: var(--font);
   min-width: 300px;
 }
@@ -58,13 +53,22 @@ form {
 
 input,
 textarea {
+  background-color: var(--major);
   color: var(--font);
+  border: 1px solid var(--theme);
+  outline: none;
   margin-block: 1em;
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   display: block;
-  border-radius: 8px;
-  outline: none;
+  font-size: 1.1em;
+  border-radius: 10px;
+}
+
+input::selection,
+textarea::selection{
+  background-color: var(--theme);
+  color: var(--major);
 }
 
 input::placeholder {
