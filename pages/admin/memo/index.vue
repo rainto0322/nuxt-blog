@@ -1,13 +1,49 @@
 <script setup lang="ts">
 import SearchInput from '~/components/form/SearchInput.vue';
 import dayjs from 'dayjs'
-const body = ref({
-  date:''
+const loading = ref(false)
+const form = ref({
+  date: '',
+  body: '',
+  img: ''
 })
-const date=computed(()=>{ return  })
-function addMemo() {
 
+async function addMemo() {
+  try {
+  //   await useFeh('user/login', {
+  //   method: 'POST',
+  //   body: {
+  //     name: 'admin',
+  //     password: '12345678',
+  //     email: 'rainto0322@foxmail.com'
+  //   }
+  // })
+  console.log(`${Date.now()}-${Math.random().toString(36).slice(2, 9)}`);
+  
+  } catch (error) {
+    console.log(error);
+  }
+  // await $fetch<{
+  //   ok: boolean,
+  //   msg: string
+  // }>('/api/memo', {
+  //   method: 'POST',
+  //   body: form.value
+  // }).then((data) => {
+  //   console.log(data);
+  // }).catch((err) => {
+  //   console.log(err);
+  // })
 }
+onMounted(() => {
+  form.value.date = dayjs().format('YYYY-MM-DDTHH:mm')
+})
+
+function uploadFile(event: any) {
+  const file = event.target.files[0]
+  console.log(file);
+}
+
 </script>
 <template>
   <NuxtLayout name="admin">
@@ -20,11 +56,11 @@ function addMemo() {
         </div>
       </div>
       <div class="wrap">
-        <input type="text" :value="Date.now()">
-        <textarea rows="10" spellcheck="false"></textarea>
-        <input type="file">
+        <input type="datetime-local" :value="form.date">
+        <textarea rows="10" spellcheck="false" :value="form.body"></textarea>
+        <input type="file" @change="uploadFile">
         <div style="text-align: right;">
-          <button>submit</button>
+          <button @click="addMemo" :disabled="loading">submit</button>
         </div>
       </div>
     </div>
@@ -39,6 +75,12 @@ function addMemo() {
 
 .wrap {
   padding-left: 1em;
+}
+
+@media (min-width:480px) and (max-width:900px) {
+  .grid {
+    grid-template-columns: 150px 1fr;
+  }
 }
 
 @media (max-width:480px) {

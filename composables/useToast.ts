@@ -26,34 +26,44 @@ export function useToast() {
 
       toasts.value = [...toasts.value, toast].slice(-maxToasts)
     }
-
     setTimeout(() => { remove(id) }, 2000);
-
     running.value = false
   }
 
-  async function add(toast: Partial<Toast>): Promise<Toast> {
+  async function add(toast: Partial<Toast>, status?: 'info' | 'warn' | 'error', icon?: string): Promise<Toast> {
     const body = {
       id: generateId(),
       open: true,
+      status,
+      icon: icon ?? '/img/success.svg',
       ...toast
     }
 
     queue.push(body)
-
     await processQueue(body.id)
     return body
   }
 
-  function update(id: string | number, toast: Omit<Partial<Toast>, 'id'>) {
-    const index = toasts.value.findIndex((t: Toast) => t.id === id)
-    if (index !== -1) {
-      toasts.value[index] = {
-        ...toasts.value[index] as Toast,
-        ...toast
-      }
-    }
+  function warn(toast: Partial<Toast>) {
+    add({
+      id: generateId(),
+      open: true,
+      status: 'warn',
+      icon: '/img/warn.svg',
+      ...toast
+    })
   }
+
+  function error(toast: Partial<Toast>) {
+    add({
+      id: generateId(),
+      open: true,
+      status: 'error',
+      icon: '/img/error.svg',
+      ...toast
+    })
+  }
+
 
   function remove(id: string | number) {
     const index = toasts.value.findIndex((t: Toast) => t.id === id)
@@ -76,7 +86,8 @@ export function useToast() {
   return {
     toasts,
     add,
-    update,
+    warn,
+    error,
     remove,
     clear
   }

@@ -8,7 +8,7 @@ function remove(id: string | number) {
 
 <template>
   <div class="toast">
-    <div v-for="item in list" class="item">
+    <div v-for="item in list" class="item" :haha="item.id">
       <div class="cont">
         <div class="icon" v-if="item.icon">
           <img :src="item.icon" alt="">
@@ -17,7 +17,7 @@ function remove(id: string | number) {
           <div class="meta">
             <div class="title" v-if="item.title">{{ item.title }}</div>
             <span style="margin-left: auto;" @click="remove(item.id)">
-              <img src="/assets/icon/close.svg" alt="">
+              <img style="vertical-align: middle;" src="/img/close.svg" alt="">
             </span>
           </div>
           <div class="msg">{{ item.msg }}</div>
@@ -64,10 +64,10 @@ function remove(id: string | number) {
   border-radius: 1em;
   background-color: var(--major);
   border: 1px solid var(--theme);
-  /* user-select: none; */
+  user-select: none;
   cursor: pointer;
   position: relative;
-  animation: closeToast .5s 2s ease forwards;
+  animation: closeToast .8s 2s ease forwards;
   overflow: hidden;
 }
 
@@ -87,9 +87,9 @@ function remove(id: string | number) {
 }
 
 .icon img {
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
+  width: 40px;
+  height: 40px;
+  margin-right: 1em;
   vertical-align: middle;
 }
 
