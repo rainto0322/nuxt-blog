@@ -2,12 +2,12 @@ interface ApiResponse {
   msg: string
   ok: boolean
 }
-export async function useFeh(url: string, option: any) {
+export async function useReply(url: string, option: any) {
   await $fetch<ApiResponse>(`/api/${url}`, option).then((data) => {
-    // const toast = useToast()
+    useToast().add({ title: data.msg })
     return data
   }).catch((error) => {
-    console.log(error);
+    useToast().add({ title: error })
   })
 
 }

@@ -25,8 +25,9 @@ export default defineEventHandler(async (event) => {
     }
 
   } catch (error) {
-    setCookie(event, 'name', '')
-    setCookie(event, 'token', '')
+    const maxAge = 0
+    setCookie(event, 'name', '', { maxAge })
+    setCookie(event, 'token', '', { maxAge })
     return new Response(error as string, { status: 401 })
   }
 })
