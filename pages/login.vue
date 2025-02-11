@@ -18,12 +18,8 @@ function submit() {
   signupMode.value ? signup() : login()
 }
 
-interface UserType {
-  user: {
-    name: string,
-    group: string
-  },
-  ok: boolean,
+type UserType = {
+  ok: boolean
   msg: string
 }
 
@@ -50,23 +46,24 @@ async function login() {
 
 async function signup() {
   loading.value = true
-  await $fetch<UserType>('/api/user/signup', {
+  await useReply('user/signup', {
     method: 'POST',
     body: form.value
-  }).then((data) => {
+  }).then((data: any) => {
     if (data.ok) {
-      toast.add({ title: data.msg })
       setTimeout(() => {
         router.push('/admin')
       }, 1000);
     }
   }).catch((err) => {
-    toast.add({ title: "注册失败！" })
+    console.log(err);
+    
+    setTimeout(() => {
+      loading.value = false
+    }, 2000);
   })
 
-  setTimeout(() => {
-    loading.value = false
-  }, 2000);
+
 }
 
 onMounted(() => {
@@ -101,9 +98,10 @@ onMounted(() => {
   </form>
 </template>
 <style scoped>
-input{
+input {
   padding: 15px;
 }
+
 /* toggle button */
 .toggle {
   position: relative;
