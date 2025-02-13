@@ -1,5 +1,4 @@
 import { Memos } from "@/models";
-import { Reply } from "@/utils";
 
 export default defineEventHandler(async (event) => {
   try {

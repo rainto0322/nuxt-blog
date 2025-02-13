@@ -31,7 +31,7 @@ const menu = {
 
 <template>
   <header class="menu">
-    <NuxtLink class="link" activeClass="active" v-for="(value, key) in menu" :to="`/admin${value.path}`" >
+    <NuxtLink class="link" activeClass="active" v-for="(value, key) in menu" :to="`/admin${value.path}`">
       <Icon class="icon" :name="value.icon" />
       <span class="title">{{ key }}</span>
     </NuxtLink>
@@ -86,10 +86,11 @@ const menu = {
 }
 
 @media (max-width:480px) {
-  .menu{
+  .menu {
     order: 2;
   }
-  .link{
+
+  .link {
     width: 100%;
   }
 

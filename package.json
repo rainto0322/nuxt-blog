@@ -10,23 +10,22 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@iconify-json/tabler": "^1.2.16"
+  },
+  "devDependencies": {
+    "@iconify-json/uil": "^1.2.3",
+    "@iconify/vue": "^4.3.0",
     "@nuxt/icon": "^1.10.3",
-    "@nuxt/kit": "^3.15.2",
-    "@nuxt/ui": "3.0.0-alpha.12",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.8",
+    "@unocss/nuxt": "^65.4.3",
     "bcrypt": "^5.1.1",
     "dayjs": "^1.11.13",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
     "nuxt": "^3.15.2",
+    "unocss": "^65.4.3",
     "vue": "latest",
     "vue-router": "latest"
-  },
-  "devDependencies": {
-    "@iconify-json/uil": "^1.2.3",
-    "@unocss/nuxt": "^65.4.3",
-    "dayjs": "^1.11.13",
-    "unocss": "^65.4.3"
   }
 }
