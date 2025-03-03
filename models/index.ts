@@ -18,13 +18,17 @@ const User = defineMongooseModel('user', {
 const Memos = defineMongooseModel('memo', {
   date: {
     type: String, default: Date.now(),
-    set: formatDate
+    // set: formatDate
   },
   body: { type: String },
-  html: { type: String },
-  img: { type: Array }
+  img: { type: Array, default: undefined }
+}, options)
+
+const Album = defineMongooseModel('album', {
+  name: { type: String, unique: true, trim: true },
+  base64: { type: String }
 }, options)
 
 export {
-  User, Memos
+  User, Memos, Album
 }

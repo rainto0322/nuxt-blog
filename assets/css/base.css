@@ -69,8 +69,7 @@ textarea {
   resize: vertical;
 }
 
-input::selection,
-textarea::selection {
+*::selection{
   background-color: var(--theme);
   color: var(--major);
 }
@@ -89,7 +88,7 @@ button {
   padding: 1em 1.5em;
   border-radius: 8px;
   cursor: pointer;
-  transition: all .2s;
+  transition: color .2s, background .2s;
 }
 
 button:disabled {

@@ -1,10 +1,13 @@
-import { Memos } from "@/models";
+import { Album } from "@/models";
 
 export default defineEventHandler(async (event) => {
+  const body = await readBody(event)
   try {
-    const body = await readBody(event)
+    const data = await new Album(body).save()
+    console.log(data);
+    return { ok: true, msg: `Image ${body.name} upload successful.` }
 
   } catch (error) {
-    return new Response(error as string, { status: 400 })
+    return { ok: false, msg: `Image ${body.name} upload failed.` }
   }
 })

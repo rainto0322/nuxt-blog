@@ -19,7 +19,7 @@ function logout() {
 onMounted(() => {
   init()
   setInterval(() => {
-    DateNow.value = dayjs().format('HH:mm:ss YYYY/MM/DD')
+    DateNow.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
   }, 1000);
 })
 

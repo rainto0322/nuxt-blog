@@ -55,8 +55,8 @@ function remove(id: string | number) {
   width: 250px;
   position: fixed;
   left: 0;
-  bottom: 0;
-  z-index: 999;
+  top: 0;
+  z-index: 1100;
 }
 
 .item {

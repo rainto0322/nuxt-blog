@@ -16,7 +16,6 @@ useHead({
 
 <style scoped>
 .admin {
-  min-height: calc(100vh - 2em);
   display: grid;
   grid-template-rows: auto 1fr;
   padding: 10px;
@@ -29,9 +28,12 @@ useHead({
   .admin {
     grid-template-rows: 1fr auto;
   }
+
 }
 
 .content {
-  margin-top: 2em;
+  margin-block: 2em 4em;
+  width: 100%;
+  overflow: hidden;
 }
 </style>

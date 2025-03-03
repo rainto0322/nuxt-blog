@@ -7,14 +7,11 @@ interface Image {
   name: string;
   base64: string;
 }
-
 const ImgList = ref<Image[]>([])
 const selectImage = ref<string | null>(null);
-
 function triggerFileInput() {
   fileInput.value?.click()
 }
-
 function handleFile(event: any) {
   const files = event.target.files
   for (let i = 0; i < files.length; i++) {
@@ -36,14 +33,17 @@ function handleFile(event: any) {
   }
 }
 
+
 function remove(index: number) {
   ImgList.value.splice(index, 1)
-}
 
+}
 const props = defineProps<{
   id?: string
-  imglist?: any
+  imglist?: string
 }>();
+
+
 
 </script>
 
@@ -56,7 +56,7 @@ const props = defineProps<{
     </div>
     <div class="item" @click="triggerFileInput">
       <img v-if="selectImage" :src="selectImage">
-      <input ref="fileInput" type="file" @change="handleFile" style="display: none;" accept=".jpg,.jpeg,.png,.webp"
+      <input ref="fileInput" type="file" @change="handleFile" style="display: none;" accept=".jpg,.jpeg,.png"
         multiple />
     </div>
   </div>

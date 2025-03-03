@@ -31,7 +31,7 @@ const menu = {
 
 <template>
   <header class="menu">
-    <NuxtLink class="link" activeClass="active" v-for="(value, key) in menu" :to="`/admin${value.path}`">
+    <NuxtLink class="link" activeClass="active" v-for="(value, key) in menu" :to="`/admin${value.path}`" :alt="key">
       <Icon class="icon" :name="value.icon" />
       <span class="title">{{ key }}</span>
     </NuxtLink>
@@ -40,11 +40,11 @@ const menu = {
 
 <style scoped>
 .menu {
-  max-width: 100%;
   overflow: hidden;
   display: flex;
   background-color: var(--sub);
   border-radius: 1em;
+  z-index: 1000;
 }
 
 .link {
@@ -87,11 +87,10 @@ const menu = {
 
 @media (max-width:480px) {
   .menu {
-    order: 2;
-  }
-
-  .link {
-    width: 100%;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1em;
   }
 
   .icon {

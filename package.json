@@ -9,11 +9,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "dependencies": {
-    "@iconify-json/tabler": "^1.2.16"
-  },
   "devDependencies": {
     "@iconify-json/uil": "^1.2.3",
+    "@iconify-json/tabler": "^1.2.16",
     "@iconify/vue": "^4.3.0",
     "@nuxt/icon": "^1.10.3",
     "@types/bcrypt": "^5.0.2",
